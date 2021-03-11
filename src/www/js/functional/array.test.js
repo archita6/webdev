@@ -8,10 +8,7 @@ describe('Array higher-order functions', () => {
   describe('#forEach', () => {
     it('rewrite the for loop with forEach', () => {
       const mockFn = jest.fn()
-
-      for (let i = 0; i < users.length; i++) {
-        mockFn(users[i])
-      }
+      users.forEach(user => mockFn(user) )
 
       expect(mockFn.mock.calls.length).toEqual(3)
       expect(mockFn.mock.calls).toEqual([
@@ -24,26 +21,27 @@ describe('Array higher-order functions', () => {
 
   describe('#filter', () => {
     it('rewrite the filter operation without a for loop', () => {
-      const usersWithFavoriteColorBlue = []
 
-      for (let i = 0; i < users.length; i++) {
+      const usersWithFavoriteColorBlue = users.filter(user => user.favoriteColor === 'blue')
+
+      /* for (let i = 0; i < users.length; i++) {
         const user = users[i]
         if (user.favoriteColor === 'blue') {
           usersWithFavoriteColorBlue.push(user)
         }
       }
-
+ */
       expect(usersWithFavoriteColorBlue).toEqual([users[0]])
     })
 
     it('EXTRA CREDIT: write a function #reject that does the opposite of #filter and uses that method', () => {
       const reject = (pred, array) => {
         const result = []
-        for (let i = 0; i < array.length; i++) {
+        /* for (let i = 0; i < array.length; i++) {
           if (!pred(array[i])) {
             result.push(array[i])
-          }
-        }
+          }e
+        } */
         return result
       }
 
