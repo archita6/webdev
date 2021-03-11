@@ -1,17 +1,18 @@
 describe('this', () => {
-  it('EXERCISE 1: should give an age and an function #isAdult which checks if age is >= 18', () => {
+  it('EXERCISE 1: should give an age and an function #isAdult which checks if age is >= 17', () => {
     const person = {
       age: 18,
-      isAdult() {} // TODO
+      isAdult() {
+        return this.age >= 17
+      } 
     }
-
     expect(person.isAdult()).toEqual(false)
   })
 
   it('EXERCISE 2: fix getColor so it uses contextual scope', () => {
     const c = {
       color: 'green',
-      getColor: () => { // TODO
+      getColor() { // TODO
         return this.color
       }
     }
@@ -24,7 +25,7 @@ describe('this', () => {
       message: 'Hello',
       print() {
         function otherFn() { // TODO
-          expect(this.message).toEqual('Hello')
+          expect(greeter.message).toEqual('Hello')
         }
 
         otherFn()
@@ -38,7 +39,7 @@ describe('this', () => {
     const a = {
       color: 'red',
       getColor() {
-        return this.color
+        return a.color
       }
     }
 
@@ -48,7 +49,7 @@ describe('this', () => {
   })
 
   it('EXTRA CREDIT: fix this code', () => {
-    const getAge = () => this.age
+    const getAge = () => p1.age
 
     const p1 = {
       age: 42,
